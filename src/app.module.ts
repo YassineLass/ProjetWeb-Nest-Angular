@@ -1,17 +1,18 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { StudentModule } from './shared/student/student.module';
-import { TeacherModule } from './shared/teacher/teacher.module';
+
 
 
 import * as dotenv from 'dotenv';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { UserModule } from './user/user.module';
+import { SubjectModule } from './shared/subject/subject.module';
+import { FieldModule } from './shared/field/field.module';
 dotenv.config()
 @Module({
-  imports: [StudentModule,
-     TeacherModule,
+  imports: [
      ConfigModule.forRoot({
        isGlobal:true,
      }),
@@ -26,7 +27,10 @@ dotenv.config()
         entities : ["dist/**/*.entity{.ts,.js}"],
         synchronize: true,
       }
-     )
+     ),
+     UserModule,
+     SubjectModule,
+     FieldModule
     ],
   controllers: [AppController],
   providers: [AppService],
