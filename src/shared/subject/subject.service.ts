@@ -20,20 +20,20 @@ export class SubjectService {
         
         if(check)
         throw new ForbiddenException('This Subject already exists ')
-        const fields = subject.fields
-        console.log(fields)
-        delete subject.fields
-        const new_subject = await this._subjectRepo.create({
-            ...subject
+        const fields = subject.fieldstab
+        console.log(fields,'f')
+        delete subject.fieldstab
+        const new_subject = await this._subjectRepo.create(
+           {...subject}
 
-        })
-        const field_list = []
+        )
+        const field_list:FieldEntity[] = []
         for(const f in fields){
             const check_field = await this._fieldRepo.findOne({name:fields[f]})
             console.log(f)
             if(!check_field)
             throw new NotFoundException('field not found :',f)
-            field_list.push(fields[f])
+            field_list.push(check_field)
         }
         new_subject.fields = field_list
 
@@ -43,13 +43,16 @@ export class SubjectService {
         const check_field = await this._fieldRepo.findOne({name:field})
         if(!check_field)
         throw new NotFoundException('field not found :')
-
+        const fileds:FieldEntity = await this._fieldRepo.findOne({
+            relations:["subjects"],
+            where:{name:field}
+        })
         const subjects = await this._subjectRepo.find({
             relations:["fields"],
             
         })
         console.log(subjects)
-        return subjects
+        return fileds.subjects
     }
     async deleteSubject(id:number){
         return await this._subjectRepo.delete(id)

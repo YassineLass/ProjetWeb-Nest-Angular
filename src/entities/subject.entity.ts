@@ -2,7 +2,7 @@ import { type } from "os";
 import {  StudyYearEnum } from "src/enums/study-year.enum";
 import { TimeStamp } from "src/Generics/timestamp.entity";
 import { UserEntity } from "src/user/entities/user.entity";
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { Column, Entity, IsNull, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { FieldEntity } from "./field.entity";
 import { NoteEntity } from "./note.entity";
 
@@ -42,6 +42,8 @@ export class SubjectEntity extends TimeStamp  {
         teacher=>teacher.teaching_subjects
     )
     teachers:UserEntity[]
+
+    
 
     
 

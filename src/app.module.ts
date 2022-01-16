@@ -10,6 +10,7 @@ import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { SubjectModule } from './shared/subject/subject.module';
 import { FieldModule } from './shared/field/field.module';
+import { NoteModule } from './shared/note/note.module';
 dotenv.config()
 @Module({
   imports: [
@@ -30,7 +31,8 @@ dotenv.config()
      ),
      UserModule,
      SubjectModule,
-     FieldModule
+     FieldModule,
+     NoteModule
     ],
   controllers: [AppController],
   providers: [AppService],
