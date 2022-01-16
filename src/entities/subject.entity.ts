@@ -23,7 +23,7 @@ export class SubjectEntity extends TimeStamp  {
         field => field.subjects
     )
     @JoinTable()
-    fileds: FieldEntity[]
+    fields: FieldEntity[]
 
     @Column({
         enum:StudyYearEnum

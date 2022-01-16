@@ -9,7 +9,7 @@ export class SubjectController {
     constructor(
         private _SubjectService:SubjectService
     ){}
-    @Get()
+    @Get('all')
     async getSubjects():Promise<SubjectEntity[]>{
         return this._SubjectService.getAllSubjects()
     }
@@ -19,11 +19,12 @@ export class SubjectController {
     ){
         return this._SubjectService.addSubject(subjectdata)
     }
-
     @Get(':field')
     async getSubjectsByField(
         @Param('field') field :string
     ){
         return this._SubjectService.getSubjects_By_Field(field)
     }
+
+   
 }

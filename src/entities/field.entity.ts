@@ -16,7 +16,7 @@ export class FieldEntity extends TimeStamp {
 
     @ManyToMany(
         type=>SubjectEntity,
-        subject=>subject.fileds
+        subject=>subject.fields
     )
     subjects : SubjectEntity[]
 

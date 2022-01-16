@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsArray, isArray, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { StudyYearEnum } from "src/enums/study-year.enum";
 
 export class AddSubjectDTO {
@@ -6,7 +6,9 @@ export class AddSubjectDTO {
     @IsString()
     name:string
 
-    @IsNotEmpty()
+    
+    @IsOptional()
+    @IsArray()
     fields:string[]
 
     @IsNotEmpty()
