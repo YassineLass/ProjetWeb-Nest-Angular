@@ -7,55 +7,61 @@ import * as bcrypt from 'bcrypt'
 import { UserRoleEnum } from 'src/enums/user-role.enum';
 import { LoginDTO } from './DTO/login.DTO';
 import { JwtService } from '@nestjs/jwt';
+import { StudentRegisterDTO } from './DTO/Student-register.DTO';
+import { FieldEntity } from 'src/entities/field.entity';
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectRepository(UserEntity)
         private _UserRepo: Repository<UserEntity>,
-        private _jwtService: JwtService
+        private _jwtService: JwtService,
+        @InjectRepository(FieldEntity)
+        private _fieldRepo:Repository<FieldEntity>
     ) {
 
     }
 
 
-    async registerStudent(userData: UserSubscibeDTO): Promise<Partial<UserEntity>> {
-
-        const username = userData.username;
-        const email = userData.email;
+    async registerStudent(studentData: StudentRegisterDTO,user): Promise<Partial<UserEntity>> {
+        if(user.role!=UserRoleEnum.ADMIN)
+        throw new UnauthorizedException("Sorry you don't have permission")
+        const username = studentData.username;
+        const email = studentData.email;
         const check = await this._UserRepo.findOne({
             where: [
                 { username: username },
                 { email: email }
             ]
         })
-        console.log(check)
         if (check) {
             throw new UnauthorizedException('username or email already exists')
         }
-        const user = this._UserRepo.create({
-            ...userData
+        const field_name = studentData.field_name
+        const check_field = await this._fieldRepo.findOne({name:field_name})
+        if(!check_field)
+        throw new NotFoundException('field does not exist')
+        const student = this._UserRepo.create({
+            ...studentData
         })
-        user.salt = await bcrypt.genSalt();
-        user.password = await bcrypt.hash(user.password, user.salt);
-        user.role = UserRoleEnum.STUDENT;
+        student.salt = await bcrypt.genSalt();
+        student.password = await bcrypt.hash(student.password, student.salt);
+        student.role = UserRoleEnum.STUDENT;
         try {
 
-            await this._UserRepo.save(user)
+            await this._UserRepo.save(student)
         }
         catch (e) {
             throw new ConflictException('Error')
         }
-        return {
-            id: user.id,
-            username: user.username,
-            email: user.email,
-            role: user.role,
-        }
+        delete student.salt;
+        delete student.password
+        return student
 
     }
-    async registerAdmin(userData: UserSubscibeDTO): Promise<Partial<UserEntity>> {
-
+    async registerAdmin(userData: UserSubscibeDTO,user): Promise<Partial<UserEntity>> {
+        if(user.role!=UserRoleEnum.ADMIN)
+        throw new UnauthorizedException("Sorry you don't have permission")
         const username = userData.username;
         const email = userData.email;
         const check = await this._UserRepo.findOne({
@@ -68,25 +74,22 @@ export class UserService {
         if (check) {
             throw new UnauthorizedException('username or email already exists')
         }
-        const user = this._UserRepo.create({
+        const admin = this._UserRepo.create({
             ...userData
         })
-        user.salt = await bcrypt.genSalt();
-        user.password = await bcrypt.hash(user.password, user.salt);
-        user.role = UserRoleEnum.ADMIN;
+        admin.salt = await bcrypt.genSalt();
+        admin.password = await bcrypt.hash(user.password, user.salt);
+        admin.role = UserRoleEnum.ADMIN;
         try {
 
-            await this._UserRepo.save(user)
+            await this._UserRepo.save(admin)
         }
         catch (e) {
             throw new ConflictException('Error')
         }
-        return {
-            id: user.id,
-            username: user.username,
-            email: user.email,
-            role: user.role,
-        }
+        delete admin.salt;
+        delete admin.password
+        return admin
 
     }
 

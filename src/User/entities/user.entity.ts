@@ -41,7 +41,7 @@ export class UserEntity extends TimeStamp {
         {enum:StudyYearEnum,
         nullable:true}
     )
-    study_year: string;
+    study_year: number;
     
     @OneToMany(
         type=>NoteEntity,

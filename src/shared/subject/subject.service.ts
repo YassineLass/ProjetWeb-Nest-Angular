@@ -32,7 +32,7 @@ export class SubjectService {
             const check_field = await this._fieldRepo.findOne({name:fields[f]})
             console.log(f)
             if(!check_field)
-            throw new NotFoundException('field not found :',f)
+            throw new NotFoundException('field not found :')
             field_list.push(check_field)
         }
         new_subject.fields = field_list
@@ -47,11 +47,6 @@ export class SubjectService {
             relations:["subjects"],
             where:{name:field}
         })
-        const subjects = await this._subjectRepo.find({
-            relations:["fields"],
-            
-        })
-        console.log(subjects)
         return fileds.subjects
     }
     async deleteSubject(id:number){

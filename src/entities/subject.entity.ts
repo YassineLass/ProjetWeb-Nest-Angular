@@ -1,4 +1,5 @@
 import { type } from "os";
+import { SemesterEnum } from "src/enums/Semester.enum";
 import {  StudyYearEnum } from "src/enums/study-year.enum";
 import { TimeStamp } from "src/Generics/timestamp.entity";
 import { UserEntity } from "src/user/entities/user.entity";
@@ -30,6 +31,11 @@ export class SubjectEntity extends TimeStamp  {
     })
     study_year:string
 
+    @Column({
+        enum:SemesterEnum
+    })
+    semester:number;
+    
     @OneToMany(
         type=>NoteEntity,
         note=>note.subject
