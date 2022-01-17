@@ -6,11 +6,13 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import {LoginComponent} from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    StudentDashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  serverError: string = "";
   constructor(
-    private logIn: LoginService
+    private logIn: LoginService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -17,10 +19,11 @@ export class LoginComponent implements OnInit {
   doLogin(login: NgForm){
     this.logIn.doLogin(login.value).subscribe(
       (response: any) => {
-        localStorage.setItem('token',response.token);
+        localStorage.setItem('access_token',response.access_token);
+        this.router.navigate(['profile'])
       },
       (error: any) => {
-        console.log("error");
+        this.serverError = error.error.message;
       }
     )
   }
