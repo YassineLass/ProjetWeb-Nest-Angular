@@ -1,6 +1,6 @@
 import { SemesterEnum } from "src/enums/Semester.enum";
 import { TimeStamp } from "src/Generics/timestamp.entity";
-import { UserEntity } from "src/User/entities/user.entity";
+import { UserEntity } from "src/entities/user.entity";
 import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { SubjectEntity } from "./subject.entity";
 

@@ -3,7 +3,7 @@ import { User } from 'src/common/decorators/User.decorator';
 import { LoginDTO } from './DTO/login.DTO';
 import { StudentRegisterDTO } from './DTO/Student-register.DTO';
 import { UserSubscibeDTO } from './DTO/user-subscribe.DTO';
-import { UserEntity } from './entities/user.entity';
+import { UserEntity } from '../entities/user.entity';
 import { JwtAuthGuard } from './Guards/jwt-auth.guard';
 import { UserService } from './user.service';
 

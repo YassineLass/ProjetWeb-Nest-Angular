@@ -2,7 +2,7 @@ import { type } from "os";
 import { SemesterEnum } from "src/enums/Semester.enum";
 import {  StudyYearEnum } from "src/enums/study-year.enum";
 import { TimeStamp } from "src/Generics/timestamp.entity";
-import { UserEntity } from "src/User/entities/user.entity";
+import { UserEntity } from "src/entities/user.entity";
 import { Column, Entity, IsNull, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { FieldEntity } from "./field.entity";
 import { NoteEntity } from "./note.entity";

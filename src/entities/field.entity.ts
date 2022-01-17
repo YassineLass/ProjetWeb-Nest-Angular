@@ -1,6 +1,6 @@
 import { type } from "os";
 import { TimeStamp } from "src/Generics/timestamp.entity";
-import { UserEntity } from "src/User/entities/user.entity";
+import { UserEntity } from "src/entities/user.entity";
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SubjectEntity } from "./subject.entity";
 

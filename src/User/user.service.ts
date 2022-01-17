@@ -2,7 +2,7 @@ import { ConflictException, Inject, Injectable, NotFoundException, UnauthorizedE
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserSubscibeDTO } from './DTO/user-subscribe.DTO';
-import { UserEntity } from './entities/user.entity';
+import { UserEntity } from '../entities/user.entity';
 import * as bcrypt from 'bcrypt'
 import { UserRoleEnum } from 'src/enums/user-role.enum';
 import { LoginDTO } from './DTO/login.DTO';
