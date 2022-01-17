@@ -7,7 +7,7 @@ import { AppService } from './app.service';
 import * as dotenv from 'dotenv';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { UserModule } from './user/user.module';
+import { UserModule } from './User/user.module';
 import { SubjectModule } from './shared/subject/subject.module';
 import { FieldModule } from './shared/field/field.module';
 import { NoteModule } from './shared/note/note.module';
