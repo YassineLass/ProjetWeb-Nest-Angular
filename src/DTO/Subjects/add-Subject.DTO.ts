@@ -9,8 +9,14 @@ export class AddSubjectDTO {
     
     @IsOptional()
     @IsArray()
+    @IsNotEmpty()
     fieldstab:string[]
 
     @IsNotEmpty()
-    study_year:StudyYearEnum;
+    study_year:number;
+
+    @IsNotEmpty()
+    semester:number
+
+
 }

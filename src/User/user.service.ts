@@ -47,6 +47,7 @@ export class UserService {
         student.salt = await bcrypt.genSalt();
         student.password = await bcrypt.hash(student.password, student.salt);
         student.role = UserRoleEnum.STUDENT;
+        student.field = check_field;
         try {
 
             await this._UserRepo.save(student)
@@ -78,7 +79,7 @@ export class UserService {
             ...userData
         })
         admin.salt = await bcrypt.genSalt();
-        admin.password = await bcrypt.hash(user.password, user.salt);
+        admin.password = await bcrypt.hash(admin.password, admin.salt);
         admin.role = UserRoleEnum.ADMIN;
         try {
 

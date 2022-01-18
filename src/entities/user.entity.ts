@@ -54,6 +54,11 @@ export class UserEntity extends TimeStamp {
         f=>f.students
     )
     field:FieldEntity;
+    
+    @Column({
+        nullable:true
+    })
+    field_name:string
 
     @ManyToMany(
         type=>SubjectEntity,

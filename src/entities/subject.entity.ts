@@ -29,10 +29,11 @@ export class SubjectEntity extends TimeStamp  {
     @Column({
         enum:StudyYearEnum
     })
-    study_year:string
+    study_year:number
 
     @Column({
-        enum:SemesterEnum
+        enum:SemesterEnum,
+        default:SemesterEnum.First
     })
     semester:number;
 

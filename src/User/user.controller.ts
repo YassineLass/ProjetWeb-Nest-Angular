@@ -16,7 +16,7 @@ export class UserController {
 
     }
 
-    @Post('student')
+    @Post('register/student')
     @UseGuards(JwtAuthGuard)
     async registerStudent( 
         @Body() studentData: StudentRegisterDTO,
@@ -24,7 +24,8 @@ export class UserController {
     ): Promise<Partial<UserEntity>>{
         return await this._userService.registerStudent(studentData,user);
     }
-    @Post('admin')
+    @Post('register/admin')
+    @UseGuards(JwtAuthGuard)
     async registerAdmin( 
         @Body() userData: UserSubscibeDTO,
         @User() user
