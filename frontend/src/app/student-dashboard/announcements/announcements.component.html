@@ -43,7 +43,7 @@
                             <span>General</span>
                         </li>
                         <li class="sidebar-dropdown">
-                            <a href="#">
+                            <a [routerLink]="['/studentdashboard/announcements']" routerLinkActive="active">
                                 <i class="fa fa-tachometer-alt"></i>
                                 <span>Announcements</span>
                                 <span class="badge badge-pill badge-danger">New</span>
@@ -51,26 +51,12 @@
 
                         </li>
                         <li class="sidebar-dropdown">
-                            <a href="#">
+                            <a [routerLink]="['/studentdashboard/subjects']" routerLinkActive="active">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Subjects</span>
                                 <span class="badge badge-pill badge-primary">3</span>
                             </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Products
 
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Orders</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Credit cart</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                         <li class="sidebar-dropdown">
                             <a href="#">
@@ -153,4 +139,3 @@
     </main>
     <!-- page-content" -->
     </div>
-    
