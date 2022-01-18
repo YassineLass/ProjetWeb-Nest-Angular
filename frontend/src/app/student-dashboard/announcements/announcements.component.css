@@ -511,3 +511,6 @@ body {
 .chiller-theme .mCSB_scrollTools .mCSB_draggerRail {
     background-color: transparent;
 }
+tbody tr th {
+  padding-bottom: 10px;
+}

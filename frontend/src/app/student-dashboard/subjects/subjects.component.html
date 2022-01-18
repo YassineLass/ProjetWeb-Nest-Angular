@@ -1,1 +1,145 @@
-<p>subjects works!</p>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="page-wrapper chiller-theme toggled">
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div id="toggle-sidebar">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="sidebar-brand">
+                    <a href="#">Student-Dashboard</a>
+                </div>
+                <div class="sidebar-header">
+
+                    <div class="user-info">
+                        <span class="user-name">
+                            <strong>Student name</strong>
+                        </span>
+
+                    </div>
+                </div>
+                <!-- sidebar-header  -->
+                <div class="sidebar-search">
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control search-menu" placeholder="Search...">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar-search  -->
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>General</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a [routerLink]="['/studentdashboard/announcements']" routerLinkActive="active">
+                                <i class="fa fa-tachometer-alt"></i>
+                                <span>Announcements</span>
+                                <span class="badge badge-pill badge-danger">New</span>
+                            </a>
+
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a [routerLink]="['/studentdashboard/subjects']" routerLinkActive="active">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Subjects</span>
+                                <span class="badge badge-pill badge-primary">3</span>
+                            </a>
+
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="far fa-gem"></i>
+                                <span>Marks</span>
+                            </a>
+
+                        </li>
+
+                        <li class="header-menu">
+                            <span>Extra</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i>
+                                <span>Calendar</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- sidebar-menu  -->
+            </div>
+            <!-- sidebar-content  -->
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fa fa-bell"></i>
+                    <span class="badge badge-pill badge-warning notification">3</span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                    <span class="badge badge-pill badge-success notification">7</span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-cog"></i>
+                    <span class="badge-sonar"></span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-power-off"></i>
+                </a>
+            </div>
+        </nav>
+        <!-- sidebar-wrapper  -->
+        <main class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <h1>Subjects</h1>
+                    </div>
+                </div>
+                <hr>
+                <h3 style="text-align:center">1st Semester</h3>
+                <table class="table table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">Subject name</th>
+                      <th scope="col">Teacher name</th>
+                      <th scope="col">Teacher e-mail</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                  <tr *ngFor="let subject of subjects;">
+                    <th>Calendrier des examens</th>
+                  </tr>
+                </tbody>
+                </table>
+                <hr>
+                <h3 style="text-align:center">2nd Semester</h3>
+                <table class="table table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">Subject name</th>
+                      <th scope="col">Teacher name</th>
+                      <th scope="col">Teacher e-mail</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                  <tr *ngFor="let subject of subjects;">
+                    <th>Calendrier des examens</th>
+                  </tr>
+                </tbody>
+                </table>
+            </div>
+    </main>
+    <!-- page-content" -->
+    </div>

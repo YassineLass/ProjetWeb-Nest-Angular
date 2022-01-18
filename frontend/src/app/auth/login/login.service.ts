@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import decode from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
@@ -31,5 +32,12 @@ export class LoginService {
     }
     return false;
 
+  }
+  getRole(){
+    if(this.isLoggedIn()){
+      const token:any = localStorage.getItem('access_token');
+      const payload: any = decode(token);
+      return payload.role;
+    }
   }
 }

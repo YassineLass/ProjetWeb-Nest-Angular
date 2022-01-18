@@ -19,7 +19,7 @@ import {RouterModule} from '@angular/router';
     LoginComponent,
     StudentDashboardComponent,
     AnnouncementsComponent,
-    SubjectsComponent
+    SubjectsComponent,
   ],
   imports: [
     BrowserModule,
