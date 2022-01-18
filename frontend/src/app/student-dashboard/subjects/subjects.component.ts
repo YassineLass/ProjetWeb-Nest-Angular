@@ -14,7 +14,7 @@ export class SubjectsComponent implements OnInit {
   ngOnInit(): void {
     this.subjectsService.fetchSubjects().subscribe(
       (response: any) => {
-        this.subjects = response;
+        this.subjects = response.subjects;
       },
       (error: any) => {
         this.subjects = [

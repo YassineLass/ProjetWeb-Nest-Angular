@@ -118,8 +118,8 @@
                     </tr>
                   </thead>
                 <tbody>
-                  <tr *ngFor="let subject of subjects;">
-                    <th>Calendrier des examens</th>
+                  <tr *ngFor="let subject of subjects.firstSemester;">
+                    <th>{{subject.name}}</th>
                   </tr>
                 </tbody>
                 </table>
@@ -134,8 +134,8 @@
                     </tr>
                   </thead>
                 <tbody>
-                  <tr *ngFor="let subject of subjects;">
-                    <th>Calendrier des examens</th>
+                  <tr *ngFor="let subject of subjects.secondSemester;">
+                    <th>{{subject.name}}</th>
                   </tr>
                 </tbody>
                 </table>

@@ -10,6 +10,6 @@ export class SubjectsService {
   ) { }
 
   fetchSubjects(){
-    return this.http.get('http://localhost:3000/user/subjects');
+    return this.http.get('http://localhost:3000/students');
   }
 }
