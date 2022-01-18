@@ -9,6 +9,9 @@ import { UserEntity } from '../entities/user.entity';
 import { JwtStrategy } from './Startegy/passport-jwt.strategy';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
+import { TeacherControlService } from './teacher-control/teacher-control.service';
+import { StudentControlService } from './student-control/student-control.service';
+import { TeacherControlController } from './teacher-control/teacher-control.controller';
 
 @Module({
   imports: [
@@ -21,7 +24,7 @@ import { UserService } from './user.service';
       signOptions : { expiresIn : 3600}
     })
   ],
-  controllers: [UserController],
-  providers: [UserService,JwtStrategy]
+  controllers: [UserController, TeacherControlController],
+  providers: [UserService,JwtStrategy, TeacherControlService, StudentControlService]
 })
 export class UserModule { }

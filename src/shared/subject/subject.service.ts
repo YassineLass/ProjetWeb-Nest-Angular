@@ -53,7 +53,9 @@ export class SubjectService {
         return await this._subjectRepo.delete(id)
     }
     async getAllSubjects():Promise<SubjectEntity[]>{
-        return this._subjectRepo.find();
+        return this._subjectRepo.find({
+            relations:["teacher"]
+        });
     }
     async updateSubject(){}
 }

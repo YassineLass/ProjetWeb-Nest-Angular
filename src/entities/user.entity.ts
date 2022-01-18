@@ -60,11 +60,11 @@ export class UserEntity extends TimeStamp {
     })
     field_name:string
 
-    @ManyToMany(
+    @OneToMany(
         type=>SubjectEntity,
-        s=>s.teachers
+        s=>s.teacher
     )
-    teaching_subjects:SubjectEntity
+    teaching_subjects:SubjectEntity[]
 
 
 }

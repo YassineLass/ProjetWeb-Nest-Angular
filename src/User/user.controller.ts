@@ -32,6 +32,14 @@ export class UserController {
         ): Promise<Partial<UserEntity>>{
         return await this._userService.registerAdmin(userData,user);
     }
+    @Post('register/teacher')
+    @UseGuards(JwtAuthGuard)
+    async registerTeacher(
+         @Body() teacherData:UserSubscibeDTO,
+         @User() user
+    ){
+        return this._userService.registerTeacher(teacherData,user)
+    }
     @Post('login')
 
     async login(
@@ -39,5 +47,6 @@ export class UserController {
     ){
         return this._userService.login(loginData)
     }
+    
 
 }

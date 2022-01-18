@@ -75,7 +75,7 @@ export class UserService {
         if (check) {
             throw new UnauthorizedException('username or email already exists')
         }
-        const admin = this._UserRepo.create({
+        const admin = await this._UserRepo.create({
             ...userData
         })
         admin.salt = await bcrypt.genSalt();
@@ -91,6 +91,41 @@ export class UserService {
         delete admin.salt;
         delete admin.password
         return admin
+
+    }
+    async registerTeacher(teacherData:UserSubscibeDTO,user):Promise<Partial<UserEntity>>{
+        if(user.role!=UserRoleEnum.ADMIN){
+            throw new UnauthorizedException("Sorry you don't have permission")
+        }
+        const username = teacherData.username;
+        const email = teacherData.email;
+        const check = await this._UserRepo.findOne({
+            where: [
+                { username: username },
+                { email: email }
+            ]
+        })
+
+        if (check) {
+            throw new UnauthorizedException('username or email already exists')
+        }
+        const teacher = this._UserRepo.create({
+            ...teacherData
+        })
+        teacher.salt = await bcrypt.genSalt();
+        teacher.password = await bcrypt.hash(teacher.password,teacher.salt)
+        teacher.role = UserRoleEnum.TEACHER;
+        try {
+
+            await this._UserRepo.save(teacher)
+        }
+        catch (e) {
+            throw new ConflictException('Error')
+        }
+        delete teacher.password;
+        delete teacher.salt;
+        return teacher;
+
 
     }
 

@@ -12,16 +12,14 @@ export class StudentsService {
         private _fieldRepo:Repository<FieldEntity>,
         @InjectRepository(UserEntity)
         private _studentRepo:Repository<UserEntity>
-    ){
-
-    }
+    ){}
 
     async getSubjects(user){
         
         const  student = await this._studentRepo.findOne({id:user.id})
         console.log(student)
         const field = await this._fieldRepo.findOne({
-            relations:["subjects"],
+            relations:["subjects","subjects.teacher"],
             where:{name:student.field_name}
         })
         if (!field)
@@ -32,7 +30,8 @@ export class StudentsService {
         for( const s in field.subjects){
             console.log(field.subjects[s])
             if(field.subjects[s]['study_year']==student.study_year){
-                if(s['semester']==1){
+                console.log(s)
+                if(field.subjects[s]['semester']==1){
                     firstSemester.push(field.subjects[s])
                     
                 }
