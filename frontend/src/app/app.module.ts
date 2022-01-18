@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 import { SubjectsComponent } from './student-dashboard/subjects/subjects.component';
 import { AnnouncementsComponent } from './student-dashboard/announcements/announcements.component';
-
+import {LoginInterceptorProvider} from './shared/interceptors/login'
 import { JwtHelperService } from '@auth0/angular-jwt';
 import {RouterModule} from '@angular/router';
 @NgModule({
@@ -29,7 +29,9 @@ import {RouterModule} from '@angular/router';
     HttpClientModule,
     RouterModule
   ],
-  providers: [],
+  providers: [
+    LoginInterceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
