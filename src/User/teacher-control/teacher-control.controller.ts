@@ -1,4 +1,8 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { User } from 'src/common/decorators/User.decorator';
+import { AddSubjectDTO } from 'src/DTO/Subjects/add-Subject.DTO';
+import { AddTeacherSubjectDTO } from 'src/DTO/Teacher/add-teacher-subject.DTO';
+import { JwtAuthGuard } from '../Guards/jwt-auth.guard';
 import { TeacherControlService } from './teacher-control.service';
 
 @Controller('control/teacher')
@@ -7,10 +11,12 @@ export class TeacherControlController {
         private _teacherControllService:TeacherControlService
     ){}
 
-    @Get()
+    @Post()
+    @UseGuards(JwtAuthGuard)
     async addSubject(
-
+        @Body() data:AddTeacherSubjectDTO,
+        @User() user
     ){
-        // return this._teacherControllService.addNewSubject()
+        return this._teacherControllService.addNewSubject(data.teacher_id,data.subject_name,user)
     }
 }

@@ -26,7 +26,7 @@ export class TeacherControlService {
             { name: subject_name }
         )
         if (!check_subject) {
-            throw new NotFoundException('Field name does not exist')
+            throw new NotFoundException('Subject name does not exist')
         }
         const check_teeacher = await this._userRepo.findOne(
             {
@@ -39,15 +39,28 @@ export class TeacherControlService {
         if (check_teeacher.role != UserRoleEnum.TEACHER) {
             throw new ConflictException('No teacher with such ID')
         }
+        
         const subjects = check_teeacher.teaching_subjects
-        if (subjects.some(s => s !== check_subject)) {
+        let test = false
+        for(let index in subjects){
+            if(JSON.stringify(subjects[index])===JSON.stringify(check_subject)){
+                test = true;
+                break;
+            }
+            
+        }
+        let teacher:UserEntity
+        if (test==false) {
             subjects.push(check_subject)
             check_teeacher.teaching_subjects = subjects
-            return await this._userRepo.save(check_teeacher)
+             teacher= await this._userRepo.save(check_teeacher)
         }
         else {
-            return check_teeacher
+             teacher = check_teeacher
         }
+        delete teacher.password;
+        delete teacher.salt;
+        return teacher
     }
     async deleteSubject(teacherId: number, SubjectId: number, user):Promise<Partial<UserEntity>> {
         if (user.role != UserRoleEnum.ADMIN) {

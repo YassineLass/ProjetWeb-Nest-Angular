@@ -30,7 +30,10 @@ export class StudentsService {
         for( const s in field.subjects){
             console.log(field.subjects[s])
             if(field.subjects[s]['study_year']==student.study_year){
-                console.log(s)
+                if(field.subjects[s].teacher!=null){
+                    delete field.subjects[s].teacher.password;
+                    delete field.subjects[s].teacher.salt;
+                }
                 if(field.subjects[s]['semester']==1){
                     firstSemester.push(field.subjects[s])
                     
@@ -46,7 +49,7 @@ export class StudentsService {
             field: student.field_name,
 
             
-            Subjects: {
+            subjects: {
                 firstSemester:firstSemester,
                 secondSemester:secondSemester
             }

@@ -12,6 +12,7 @@ import { SubjectModule } from './shared/subject/subject.module';
 import { FieldModule } from './shared/field/field.module';
 import { NoteModule } from './shared/note/note.module';
 import { StudentsModule } from './shared/students/students.module';
+import { TeachersModule } from './shared/teachers/teachers.module';
 dotenv.config()
 @Module({
   imports: [
@@ -34,7 +35,8 @@ dotenv.config()
      SubjectModule,
      FieldModule,
      NoteModule,
-     StudentsModule
+     StudentsModule,
+     TeachersModule
     ],
   controllers: [AppController],
   providers: [AppService],
