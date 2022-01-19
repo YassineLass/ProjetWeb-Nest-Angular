@@ -1,0 +1,146 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="page-wrapper chiller-theme toggled">
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div id="toggle-sidebar">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="sidebar-brand">
+                    <a href="#">Admin-Dashboard</a>
+                </div>
+                <div class="sidebar-header">
+
+                    <div class="user-info">
+                        <span class="user-name">
+                            <strong>Admin name</strong>
+                        </span>
+
+                    </div>
+                </div>
+                <!-- sidebar-header  -->
+                <div class="sidebar-search">
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control search-menu" placeholder="Search...">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar-search  -->
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>General</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a [routerLink]="['/admindashboard/announcements']" routerLinkActive="active">
+                                <i class="fa fa-tachometer-alt"></i>
+                                <span>Announcements</span>
+                                <span class="badge badge-pill badge-danger">New</span>
+                            </a>
+
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a [routerLink]="['/admindashboard/students']" routerLinkActive="active">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Students</span>
+                                <span class="badge badge-pill badge-primary">3</span>
+                            </a>
+
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a [routerLink]="['/admindashboard/teachers']" routerLinkActive="active">
+                                <i class="far fa-gem"></i>
+                                <span>Teachers</span>
+                            </a>
+
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a [routerLink]="['/admindashboard/subjects']" routerLinkActive="active">
+                                <i class="far fa-gem"></i>
+                                <span>Subjects</span>
+                            </a>
+
+                        </li>
+
+                        <li class="header-menu">
+                            <span>Extra</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i>
+                                <span>Calendar</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- sidebar-menu  -->
+            </div>
+            <!-- sidebar-content  -->
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fa fa-bell"></i>
+                    <span class="badge badge-pill badge-warning notification">3</span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                    <span class="badge badge-pill badge-success notification">7</span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-cog"></i>
+                    <span class="badge-sonar"></span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-power-off"></i>
+                </a>
+            </div>
+        </nav>
+        <!-- sidebar-wrapper  -->
+        <main class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <h1>Student management</h1>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                  <table class="table table">
+
+
+                    <thead>
+                      <tr>
+                      <th></th>
+                      <th></th>
+                        <th style="float:right">    <input class="btn btn-primary" type="button" value="Add a new student" (click)="openAddDialog()"></th>
+                      </tr>
+                      <tr>
+                        <th>student ID</th>
+                        <th>student username</th>
+                        </tr>
+                      </thead>
+                  <tbody>
+                    <tr *ngFor="let student of students;">
+                      <td>{{student.id}}</td>
+                      <td>{{student.username}}</td>
+                    </tr>
+                  </tbody>
+                  </table>
+
+                </div>
+            </div>
+    </main>
+    <!-- page-content" -->
+    </div>

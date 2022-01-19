@@ -12,6 +12,9 @@ import { AnnouncementsComponent } from './student-dashboard/announcements/announ
 import {LoginInterceptorProvider} from './shared/interceptors/login'
 import { JwtHelperService } from '@auth0/angular-jwt';
 import {RouterModule} from '@angular/router';
+import {AdminDashboardModule} from './admin-dashboard/admin-dashboard.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,13 @@ import {RouterModule} from '@angular/router';
     ReactiveFormsModule,
     ROUTING,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    AdminDashboardModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+
+
+
   ],
   providers: [
     LoginInterceptorProvider

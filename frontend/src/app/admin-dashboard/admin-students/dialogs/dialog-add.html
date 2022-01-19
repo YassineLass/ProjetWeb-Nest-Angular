@@ -1,0 +1,36 @@
+<form #student="ngForm" (ngSubmit)="addStudent(student)">
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input required ngModel #username="ngModel"  type="text" class="form-control" name="username" id="username">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input required ngModel #email="ngModel" type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input required ngModel #password="ngModel" type="password" class="form-control" name="password" id="exampleInputPassword1">
+  </div>
+  <div class="mb-3">
+    <label for="studyfield" class="form-label">Study field</label>
+    <select required ngModel #studyfield="ngModel" name="studyfield" id="studyfield" class="form-select form-control" aria-label="Default select example">
+    <option selected value="gl">GL</option>
+    <option value="rt">RT</option>
+    <option value="imi">IMI</option>
+    <option value="iia">IIA</option>
+    <option value="ch">CH</option>
+    <option value="bio">BIO</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="studyyear" class="form-label">Study year</label>
+    <select id="studyyear" class="form-select form-control" aria-label="Default select example">
+    <option selected value="2">2</option>
+    <option value="3">3</option>
+    <option value="3">4</option>
+    <option value="3">5</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary form-control">Submit</button>
+</form>
