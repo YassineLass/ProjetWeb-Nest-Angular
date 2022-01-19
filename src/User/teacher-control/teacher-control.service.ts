@@ -89,7 +89,7 @@ export class TeacherControlService {
         //remove the subject from the subjects table 
         subjetcs.splice(index,1)
         check_teacher.teaching_subjects=subjetcs;
-        return check_teacher
+        return await this._userRepo.save(check_teacher)
 
     }
 }

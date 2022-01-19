@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { FieldEntity } from 'src/entities/field.entity';
 import { SubjectEntity } from 'src/entities/subject.entity';
 import { UserEntity } from 'src/entities/user.entity';
+import { UserRoleEnum } from 'src/enums/user-role.enum';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -54,9 +55,16 @@ export class StudentsService {
                 secondSemester:secondSemester
             }
         }
-
-
-
+    }
+    async getStudents():Promise<Partial<UserEntity>[]>{
+        const students = await this._studentRepo.createQueryBuilder("Users")
+                                                .leftJoin("Users.field","fields")
+                                                .select(["Users.id","Users.username","Users.email","Users.field_name","fields"])
+                                                .where("Users.role = :role",{role:UserRoleEnum.STUDENT})
+                                                .getMany()
+        return students                                        
+        
 
     }
+
 }
