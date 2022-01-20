@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from 'src/entities/user.entity';
 import { UserRoleEnum } from 'src/enums/user-role.enum';
@@ -22,6 +22,12 @@ export class TeachersService {
             delete teachers[i].password;
         }
         return teachers;
+    }
+
+    async deleteTeacher(id:number,user){
+        if(user.role!=UserRoleEnum.ADMIN){
+            throw new UnauthorizedException("Sorry you don't have permission")
+        }
     }
     
 }

@@ -15,9 +15,10 @@ export class FieldService {
     async addField(field:AddFieldDTO,user):Promise<FieldEntity>{
         if(user.role!=UserRoleEnum.ADMIN)
         throw new UnauthorizedException("Sorry you don't have permission")
-        const check_field = this._fieldRepo.findOne({
+        const check_field = await this._fieldRepo.findOne({
             name:field.name
         })
+        console.log(check_field)
         if(check_field)
         throw new ConflictException("Field name already exist")
         return await this._fieldRepo.save(field);
