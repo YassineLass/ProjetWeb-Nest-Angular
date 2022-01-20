@@ -9,6 +9,7 @@ export class AdminDashboardService {
   constructor(
     private http: HttpClient
   ) { }
+  //fields
   addStudyField(field: any){
     console.log(field);
     return this.http.post(this.api_link,field);
@@ -18,5 +19,34 @@ export class AdminDashboardService {
   }
   deleteField(id: any){
     return this.http.delete(this.api_link+'/'+id)
+  }
+  //students
+  api_link1 = 'http://localhost:3000/user/register/student';
+  addStudent(student: any){
+    const info = {
+      username: student.username,
+      email:student.email,
+      password:student.password,
+      field_name:student.studyField,
+      study_year:student.studyYear
+    }
+    console.log(info);
+    return this.http.post(this.api_link1, info)
+  }
+  api_link2 = 'http://localhost:3000/students/all';
+  getAllStudents(){
+    return this.http.get(this.api_link2);
+  }
+  api_link3 = 'http://localhost:3000/control/student/'
+  editStudent(student: any,id: any){
+    const info = {
+      username: student.username,
+      email:student.email,
+      password:student.password,
+      field_name:student.studyField,
+      study_year:student.studyYear
+    }
+    console.log(info);
+    return this.http.patch(this.api_link3+id.id, info)
   }
 }

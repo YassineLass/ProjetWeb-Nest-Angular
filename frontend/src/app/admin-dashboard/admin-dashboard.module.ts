@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminAnnouncementComponent } from './admin-announcement/admin-announcement.component';
 import { AdminStudentsComponent } from './admin-students/admin-students.component';
-import { DialogAdd } from './admin-students/admin-students.component';
+import { DialogAdd, DialogEdit } from './admin-students/admin-students.component';
 
 import { AdminTeachersComponent } from './admin-teachers/admin-teachers.component';
 import { AdminSubjectsComponent } from './admin-subjects/admin-subjects.component';
@@ -19,7 +19,8 @@ import { AdminStudyfieldsComponent, FieldDialogAdd } from './admin-studyfields/a
     AdminSubjectsComponent,
     DialogAdd,
     AdminStudyfieldsComponent,
-    FieldDialogAdd
+    FieldDialogAdd,
+    DialogEdit
   ],
   imports: [
     CommonModule,
