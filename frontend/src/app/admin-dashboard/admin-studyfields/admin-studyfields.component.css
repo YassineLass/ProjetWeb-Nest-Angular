@@ -514,3 +514,6 @@ body {
 tbody tr th {
   padding-bottom: 10px;
 }
+#deleteButton:hover {
+  color:red;
+}

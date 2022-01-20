@@ -17,6 +17,6 @@ export class AdminDashboardService {
     return this.http.get(this.api_link);
   }
   deleteField(id: any){
-    return this.http.delete(this.api_link, id)
+    return this.http.delete(this.api_link+'/'+id)
   }
 }
