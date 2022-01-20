@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog,MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
 import {AdminDashboardService} from '../admin-dashboard.service'
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-admin-studyfields',
   templateUrl: './admin-studyfields.component.html',
@@ -40,7 +42,8 @@ export class AdminStudyfieldsComponent implements OnInit {
 export class FieldDialogAdd{
   constructor(
     public dialogRef: MatDialogRef<FieldDialogAdd>,
-    private adminService: AdminDashboardService
+    private adminService: AdminDashboardService,
+    private router: Router
     ) {}
   onNoClick(): void {
     this.dialogRef.close();
@@ -48,7 +51,10 @@ export class FieldDialogAdd{
   addField(field: NgForm) {
     this.adminService.addStudyField(field.value).subscribe(
       (response: any) => {
-        console.log(response);
+        this.dialogRef.close();
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate(['/admindashboard/studyfields'])
       },
       (error: any) => {console.log(error)}
     );

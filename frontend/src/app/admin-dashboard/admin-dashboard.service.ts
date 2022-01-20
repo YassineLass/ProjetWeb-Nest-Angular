@@ -10,6 +10,7 @@ export class AdminDashboardService {
     private http: HttpClient
   ) { }
   addStudyField(field: any){
+    console.log(field);
     return this.http.post(this.api_link,field);
   }
   getAllStudyFields() {
