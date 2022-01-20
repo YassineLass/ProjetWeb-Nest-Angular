@@ -1,8 +1,10 @@
-import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AddSubjectDTO } from 'src/DTO/Subjects/add-Subject.DTO';
+import { UpdateSubjectDTO } from 'src/DTO/Subjects/update-subject.DTO';
 import { FieldEntity } from 'src/entities/field.entity';
 import { SubjectEntity } from 'src/entities/subject.entity';
+import { UserRoleEnum } from 'src/enums/user-role.enum';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -57,5 +59,16 @@ export class SubjectService {
             relations:["teacher"]
         });
     }
-    async updateSubject(){}
+    async updateSubject(id,subject_data:UpdateSubjectDTO,user){
+        if(user.role!=UserRoleEnum.ADMIN)
+        throw new UnauthorizedException("Sorry you don't have permission")
+
+        const subject = await this._subjectRepo.findOne({
+            relations:["fields"],
+            where:{id:id}
+        })
+        if(!subject)
+        throw new NotFoundException("There is no student with this ID")
+        
+    }
 }

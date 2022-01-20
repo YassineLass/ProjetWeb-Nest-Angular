@@ -1,25 +1,16 @@
 import { Type } from "class-transformer";
-import { IsNotEmpty, IsNumber, IsOptional, IsString, Max, Min } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, Max, Min } from "class-validator";
 
 export class UpdateStudentDTO {
 
     @IsOptional()
     @IsString()
-    firstname : string;
+    username : string;
 
     @IsOptional()
-    @IsString()
-    lastname : string;
+    @IsEmail()
+    email:string;
 
-    @IsOptional()
-    @IsString()
-    birthdate : Date;
-
-    @IsOptional() 
-    @IsNumber()
-    @Min(0)
-    @Max(99999999)
-    CIN : number;
 
     @IsOptional()
     @IsNumber()
@@ -30,5 +21,9 @@ export class UpdateStudentDTO {
     @IsOptional()
     @IsString()
     field : string;
+
+    // @IsOptional()
+    // @IsString()
+    // password:string;
 }
 

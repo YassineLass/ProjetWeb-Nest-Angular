@@ -17,5 +17,10 @@ export class FieldService {
         throw new UnauthorizedException("Sorry you don't have permission")
         return await this._fieldRepo.save(field);
     }
-    
+    async getFields(user):Promise<FieldEntity[]>{
+        if(user.role!=UserRoleEnum.ADMIN){
+            throw new UnauthorizedException("Sorry you don't have permission")
+        }
+        return await this._fieldRepo.find()
+    }
 }

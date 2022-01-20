@@ -92,4 +92,30 @@ export class TeacherControlService {
         return await this._userRepo.save(check_teacher)
 
     }
+    async searchById(teacher_id,user):Promise<Partial<UserEntity>>{
+        if(user.role!=UserRoleEnum.ADMIN)
+        throw new UnauthorizedException("Sorry you don't have permission")
+        const teacher = await this._userRepo.findOne({
+            id:teacher_id
+        })
+        if(!teacher){
+            throw new NotFoundException('Teacher not found')
+        }
+        delete teacher.password;
+        delete teacher.salt;
+        return teacher
+    }
+    async deleteTeacher(teacher_id:number,user){
+        if(user.role!=UserRoleEnum.ADMIN){
+            throw new UnauthorizedException("Sorry you din't have permission")
+        }
+        const teacher = await this._userRepo.findOne({
+            id:teacher_id
+        })
+        if(!teacher)
+        throw new NotFoundException("Sorry there is so teacher with this ID")
+
+        return await this._userRepo.remove(teacher)
+
+    }
 }
