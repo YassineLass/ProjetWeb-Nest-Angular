@@ -13,13 +13,26 @@ export class AdminStudyfieldsComponent implements OnInit {
   fields: any = []
   constructor(
     public dialog: MatDialog,
-    private adminService: AdminDashboardService
+    private adminService: AdminDashboardService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.adminService.getAllStudyFields().subscribe(
       (response: any) => {
         this.fields = response
+      },
+      (error: any) => {
+        this.fields = []
+      }
+    )
+  }
+  deleteField(fieldId: any){
+    this.adminService.deleteField(fieldId).subscribe(
+      (response: any) => {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate(['/admindashboard/studyfields'])
       },
       (error: any) => {
         this.fields = []
