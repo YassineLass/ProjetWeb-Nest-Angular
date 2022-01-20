@@ -12,10 +12,10 @@ export class NoteEntity extends TimeStamp {
     @Column()
     note:number
 
-    @Column(
-        {enum:SemesterEnum}
-    )
-    smester: number
+    // @Column(
+    //     {enum:SemesterEnum}
+    // )
+    // smester: number
 
     @ManyToOne(
 

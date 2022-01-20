@@ -12,6 +12,7 @@ import { UserService } from './user.service';
 import { TeacherControlService } from './teacher-control/teacher-control.service';
 import { StudentControlService } from './student-control/student-control.service';
 import { TeacherControlController } from './teacher-control/teacher-control.controller';
+import { StudentControlController } from './student-control/student-control.controller';
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { TeacherControlController } from './teacher-control/teacher-control.cont
       signOptions : { expiresIn : 3600}
     })
   ],
-  controllers: [UserController, TeacherControlController],
+  controllers: [UserController, TeacherControlController, StudentControlController],
   providers: [UserService,JwtStrategy, TeacherControlService, StudentControlService]
 })
 export class UserModule { }

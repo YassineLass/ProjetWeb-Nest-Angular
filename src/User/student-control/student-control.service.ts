@@ -1,5 +1,6 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UpdateStudentDTO } from 'src/DTO/Student/update-Student.DTO';
 import { FieldEntity } from 'src/entities/field.entity';
 import { SubjectEntity } from 'src/entities/subject.entity';
 import { UserEntity } from 'src/entities/user.entity';
@@ -19,7 +20,7 @@ export class StudentControlService {
     ) {}
     async changeYear(student_id:number,year:StudyYearEnum,user):Promise<Partial<UserEntity>>{
         if(user.role!=UserRoleEnum.ADMIN)
-        throw new UnauthorizedException("Sorry you don' have permission")
+        throw new UnauthorizedException("Sorry you don't have permission")
         let check_student = await this._userRepo.findOne({
             id:student_id
         })
@@ -73,6 +74,33 @@ export class StudentControlService {
         delete check_student.salt;
         return check_student
 
+    }
+    async updateStudent(id:number,studentData:UpdateStudentDTO,user):Promise<UserEntity>{
+        if(user.role!=UserRoleEnum.ADMIN){
+            throw new UnauthorizedException("Sorry you don't have permission")
+        }
+        let data
+        const student = await this._userRepo.preload({
+            id,
+            ...studentData,
+            ...data,
+
+        })
+        if(!student){
+            throw new NotFoundException("Sorry there is no student with this ID")
+        }
+        return await this._userRepo.save(student);
+
+    }
+    async deleteStudent(student_id:number,user){
+        if(user.role!=UserRoleEnum.ADMIN){
+            throw new UnauthorizedException("Sorry you don't have permission")
+        }
+        const check_student = await this._userRepo.findOne(student_id)
+        if(!check_student){
+            throw new NotFoundException("Sorry there is no student with this ID")
+        }
+        return await this._userRepo.remove(check_student)
     }
 
 

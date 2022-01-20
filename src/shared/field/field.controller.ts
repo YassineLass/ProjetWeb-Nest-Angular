@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { User } from 'src/common/decorators/User.decorator';
 import { AddFieldDTO } from 'src/DTO/Field/add-field.DTO';
 import { FieldEntity } from 'src/entities/field.entity';
@@ -19,6 +19,14 @@ export class FieldController {
     ):Promise<FieldEntity>
     {
         return this._FieldService.addField(fieldData,user)
+    }
+
+    @Get()
+    @UseGuards(JwtAuthGuard)
+    async getFields(
+        @User() user
+    ): Promise<FieldEntity[]>{
+        return await this._FieldService.getFields(user)
     }
 
 }

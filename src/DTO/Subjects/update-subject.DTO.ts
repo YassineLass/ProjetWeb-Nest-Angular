@@ -1,21 +1,21 @@
 import { IsArray, isArray, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { StudyYearEnum } from "src/enums/study-year.enum";
 
-export class AddSubjectDTO {
-    @IsNotEmpty()
+export class UpdateSubjectDTO {
+    @IsOptional()
     @IsString()
     name:string
 
     
 
     @IsArray()
-    @IsNotEmpty()
+    @IsOptional()
     fieldstab:string[]
 
-    @IsNotEmpty()
+    @IsOptional()
     study_year:number;
 
-    @IsNotEmpty()
+    @IsOptional()
     semester:number
 
 
