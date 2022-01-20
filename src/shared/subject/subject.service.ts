@@ -21,9 +21,8 @@ export class SubjectService {
         const check = await this._subjectRepo.findOne({name:subject.name})
         
         if(check)
-        throw new ForbiddenException('This Subject already exists ')
+        throw new ForbiddenException('Subject name already exists ')
         const fields = subject.fieldstab
-        console.log(fields,'f')
         delete subject.fieldstab
         const new_subject = await this._subjectRepo.create(
            {...subject}
@@ -51,7 +50,9 @@ export class SubjectService {
         })
         return fileds.subjects
     }
-    async deleteSubject(id:number){
+    async deleteSubject(id:number,user){
+        if(user.role!=UserRoleEnum.ADMIN)
+        throw new UnauthorizedException("Sorry you don't have permission")
         return await this._subjectRepo.delete(id)
     }
     async getAllSubjects():Promise<SubjectEntity[]>{
@@ -69,6 +70,19 @@ export class SubjectService {
         })
         if(!subject)
         throw new NotFoundException("There is no student with this ID")
+        const fields = subject_data.fieldstab
+        delete subject_data.fieldstab
         
+        const field_list:FieldEntity[] = []
+        for(const f in fields){
+            const check_field = await this._fieldRepo.findOne({name:fields[f]})
+            if(!check_field)
+            throw new NotFoundException('field {fields[f]}not found :')
+            field_list.push(check_field)
+        }
+        subject.fields = field_list
+
+        return await this._subjectRepo.save(subject)
+
     }
 }
