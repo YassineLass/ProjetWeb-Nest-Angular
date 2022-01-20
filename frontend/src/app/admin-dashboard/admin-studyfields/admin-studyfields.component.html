@@ -118,21 +118,33 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <h1>Administration Announcements</h1>
+                        <h1>Fields management</h1>
                     </div>
                 </div>
 
                 <hr>
                 <div class="row">
-<table class="table table-dark">
+                  <table class="table table">
 
-<tbody>
-  <tr>
-    <th>20/01/2022</th>
-    <th>Calendrier des examens</th>
-  </tr>
-</tbody>
-</table>
+
+                    <thead>
+                      <tr>
+                      <th></th>
+                      <th></th>
+                        <th style="float:right">    <input class="btn btn-primary" type="button" value="Add a new field" (click)="openAddField()"></th>
+                      </tr>
+                      <tr>
+                        <th>field ID</th>
+                        <th>field name</th>
+                        </tr>
+                      </thead>
+                  <tbody>
+                    <tr *ngFor="let field of fields;">
+                      <td>{{field.id}}</td>
+                      <td>{{field.username}}</td>
+                    </tr>
+                  </tbody>
+                  </table>
 
                 </div>
             </div>

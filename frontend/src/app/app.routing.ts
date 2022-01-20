@@ -9,7 +9,7 @@ import {AdminAnnouncementComponent} from './admin-dashboard/admin-announcement/a
 import {AdminSubjectsComponent} from './admin-dashboard/admin-subjects/admin-subjects.component'
 import {AdminStudentsComponent} from './admin-dashboard/admin-students/admin-students.component'
 import {AdminTeachersComponent} from './admin-dashboard/admin-teachers/admin-teachers.component'
-
+import {AdminStudyfieldsComponent} from './admin-dashboard/admin-studyfields/admin-studyfields.component'
 const APP_ROUTES : Routes = [
   {path: '', component: LoginComponent},
   {path: 'studentdashboard',children: [
@@ -23,6 +23,7 @@ const APP_ROUTES : Routes = [
     {path: 'subjects', component: AdminSubjectsComponent},
     {path: 'teachers', component: AdminTeachersComponent},
     {path: 'students', component: AdminStudentsComponent},
+    {path: 'studyfields', component: AdminStudyfieldsComponent}
 
   ], canActivate: [AdminGuard]}
 ];

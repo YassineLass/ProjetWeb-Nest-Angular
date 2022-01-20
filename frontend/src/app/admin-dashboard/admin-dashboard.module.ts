@@ -8,6 +8,7 @@ import { AdminTeachersComponent } from './admin-teachers/admin-teachers.componen
 import { AdminSubjectsComponent } from './admin-subjects/admin-subjects.component';
 import {RouterModule} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminStudyfieldsComponent, FieldDialogAdd } from './admin-studyfields/admin-studyfields.component';
 
 
 @NgModule({
@@ -16,7 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminStudentsComponent,
     AdminTeachersComponent,
     AdminSubjectsComponent,
-    DialogAdd
+    DialogAdd,
+    AdminStudyfieldsComponent,
+    FieldDialogAdd
   ],
   imports: [
     CommonModule,

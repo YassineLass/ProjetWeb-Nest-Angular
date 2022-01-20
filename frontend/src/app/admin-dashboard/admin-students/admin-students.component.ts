@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog,MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
+import {AdminDashboardService} from '../admin-dashboard.service'
 
 export interface DialogData {
   program_id: any;
@@ -14,6 +15,7 @@ export class AdminStudentsComponent implements OnInit {
   students: any = []
   constructor(
     public dialog: MatDialog,
+
   ) { }
 
   ngOnInit(): void {
@@ -31,9 +33,21 @@ export class AdminStudentsComponent implements OnInit {
   templateUrl: './dialogs/dialog-add.html',
   styleUrls: ['./dialogs/dialog-add.css']
 })
-export class DialogAdd{
+export class DialogAdd implements OnInit{
+  fields = []
+  ngOnInit(): void {
+    this.adminService.getAllStudyFields().subscribe(
+      (response: any) => {
+        this.fields = response
+      },
+      (error: any) => {
+        this.fields = []
+      }
+    )
+  }
   constructor(
     public dialogRef: MatDialogRef<DialogAdd>,
+    private adminService: AdminDashboardService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
   onNoClick(): void {
     this.dialogRef.close();

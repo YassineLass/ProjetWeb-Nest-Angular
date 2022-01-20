@@ -1,0 +1,8 @@
+<form #field="ngForm" (ngSubmit)="addField(field)">
+  <div class="mb-3">
+    <label for="name" class="form-label">field name</label>
+    <input required ngModel #name="ngModel"  type="text" class="form-control" name="name" id="name">
+  </div>
+
+  <button type="submit" class="btn btn-primary form-control">Submit</button>
+</form>
