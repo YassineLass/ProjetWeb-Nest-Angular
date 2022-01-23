@@ -20,7 +20,7 @@ export class NoteEntity extends TimeStamp {
     @ManyToOne(
 
         type=>UserEntity,
-        user=>user.notes
+        user=>user.grades
     )
     student:UserEntity
 

@@ -24,10 +24,6 @@ export class TeachersService {
         return teachers;
     }
 
-    async deleteTeacher(id:number,user){
-        if(user.role!=UserRoleEnum.ADMIN){
-            throw new UnauthorizedException("Sorry you don't have permission")
-        }
-    }
+
     
 }

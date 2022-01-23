@@ -47,7 +47,7 @@ export class UserEntity extends TimeStamp {
         type=>NoteEntity,
         note=>note.student
     )
-    notes:NoteEntity[]
+    grades:NoteEntity[]
 
     @ManyToOne(
         type=>FieldEntity,

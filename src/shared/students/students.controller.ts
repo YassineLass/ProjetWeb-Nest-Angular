@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, UseGuards } from '@nestjs/common';
 import { User } from 'src/common/decorators/User.decorator';
 import { UserEntity } from 'src/entities/user.entity';
 import { JwtAuthGuard } from 'src/User/Guards/jwt-auth.guard';
@@ -15,6 +15,14 @@ export class StudentsController {
         return await this._studentService.getStudents()
     }
 
+    @Get(':id')
+    @UseGuards(JwtAuthGuard)
+    async getStudentsBySubject(
+        @User()user,
+        @Param('id',ParseIntPipe) id:number
+    ){
+        return this._studentService.getStudenstBySubject(id,user)
+    }
 
     @Get()
     @UseGuards(JwtAuthGuard)
@@ -23,6 +31,7 @@ export class StudentsController {
     ){
         return this._studentService.getSubjects(student)
     }
+
 
 
 }
