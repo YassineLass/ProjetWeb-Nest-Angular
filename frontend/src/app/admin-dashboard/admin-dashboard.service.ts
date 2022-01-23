@@ -50,6 +50,19 @@ export class AdminDashboardService {
     return this.http.patch(this.api_link3+id.id, info)
   }
   deleteStudent(id: any) {
-    return this.http.delete(this.api_link+id)
+    return this.http.delete(this.api_link3+id)
+  }
+  //Subjects
+  api_link4 = 'http://localhost:3000/subject'
+  addSubject(infos: any){
+    console.log(infos)
+    return this.http.post(this.api_link4, infos)
+  }
+  deleteSubject(id: any){
+    return this.http.delete(this.api_link4+"/"+id)
+  }
+  api_link5 = 'http://localhost:3000/subject/all'
+  getAllSubjects(){
+    return this.http.get(this.api_link5)
   }
 }

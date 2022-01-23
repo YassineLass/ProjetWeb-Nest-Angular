@@ -1,0 +1,31 @@
+<form #subject="ngForm" (ngSubmit)="addSubject(subject)">
+  <div class="mb-3">
+    <label for="name" class="form-label">subject name</label>
+    <input required ngModel #name="ngModel"  type="text" class="form-control" name="name" id="name">
+  </div>
+  <div class="mb-3">
+    <label for="studyfield" class="form-label">Study field</label>
+    <select required ngModel #studyField="ngModel" name="studyField" id="studyfield" class="form-select form-control" aria-label="Default select example">
+    <option *ngFor="let field of fields;" value={{field.name}}>{{field.name}}</option>
+
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="study_year" class="form-label">Study year</label>
+    <select required ngModel #studyYear="ngModel" id="study_year" name="study_year" class="form-select form-control" aria-label="Default select example">
+    <option selected value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="semester" class="form-label">Study semester</label>
+    <select required ngModel #semester="ngModel" id="semester" name="semester" class="form-select form-control" aria-label="Default select example">
+    <option selected value="1">1</option>
+    <option value="2">2</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary form-control">Submit</button>
+</form>

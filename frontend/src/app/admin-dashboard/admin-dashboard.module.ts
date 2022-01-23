@@ -5,7 +5,7 @@ import { AdminStudentsComponent } from './admin-students/admin-students.componen
 import { DialogAdd, DialogEdit } from './admin-students/admin-students.component';
 
 import { AdminTeachersComponent } from './admin-teachers/admin-teachers.component';
-import { AdminSubjectsComponent } from './admin-subjects/admin-subjects.component';
+import { AdminSubjectsComponent, DialogAddSubject } from './admin-subjects/admin-subjects.component';
 import {RouterModule} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminStudyfieldsComponent, FieldDialogAdd } from './admin-studyfields/admin-studyfields.component';
@@ -20,7 +20,8 @@ import { AdminStudyfieldsComponent, FieldDialogAdd } from './admin-studyfields/a
     DialogAdd,
     AdminStudyfieldsComponent,
     FieldDialogAdd,
-    DialogEdit
+    DialogEdit,
+    DialogAddSubject
   ],
   imports: [
     CommonModule,
