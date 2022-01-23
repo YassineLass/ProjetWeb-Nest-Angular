@@ -5,5 +5,9 @@ export class addNoteDTO {
     note:number
 
     @IsNotEmpty()
-    subject
+    subject_id:number;
+
+    @IsNotEmpty()
+    student_id:number;
+    
 }

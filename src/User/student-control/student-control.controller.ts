@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Param, ParseIntPipe, Patch } from '@nestjs/common';
+import { Body, Controller, Delete, Param, ParseIntPipe, Patch, UseGuards } from '@nestjs/common';
 import { User } from 'src/common/decorators/User.decorator';
 import { UpdateStudentDTO } from 'src/DTO/Student/update-Student.DTO';
 import { UserEntity } from 'src/entities/user.entity';
+import { JwtAuthGuard } from '../Guards/jwt-auth.guard';
 import { StudentControlService } from './student-control.service';
 
 @Controller('control/student')
@@ -11,7 +12,8 @@ export class StudentControlController {
     ) {}
 
 
-    @Delete('id')
+    @Delete(':id')
+    @UseGuards(JwtAuthGuard)
     async deleteStudent(
         @Param('id',ParseIntPipe) id:number,
         @User() user
@@ -19,6 +21,7 @@ export class StudentControlController {
         return this._studentControlService.deleteStudent(id,user)
     }
     @Patch(':id')
+    @UseGuards(JwtAuthGuard)
     async updateStudent(
         @Body() data:UpdateStudentDTO,
         @Param('id',ParseIntPipe) id:number,

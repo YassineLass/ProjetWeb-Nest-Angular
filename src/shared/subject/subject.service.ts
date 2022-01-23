@@ -56,9 +56,16 @@ export class SubjectService {
         return await this._subjectRepo.delete(id)
     }
     async getAllSubjects():Promise<SubjectEntity[]>{
-        return this._subjectRepo.find({
-            relations:["teacher"]
+        const subjects =await  this._subjectRepo.find({
+            relations:["teacher","fields"]
         });
+        for(const i in subjects){
+            if(subjects[i].teacher){
+                delete subjects[i].teacher.password;
+                delete subjects[i].teacher.salt;
+            }    
+        }
+        return subjects
     }
     async updateSubject(id,subject_data:UpdateSubjectDTO,user){
         if(user.role!=UserRoleEnum.ADMIN)
