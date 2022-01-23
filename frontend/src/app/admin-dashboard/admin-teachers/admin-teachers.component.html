@@ -1,1 +1,170 @@
-<p>admin-teachers works!</p>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="page-wrapper chiller-theme toggled">
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div id="toggle-sidebar">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="sidebar-brand">
+                    <a href="#">Admin-Dashboard</a>
+                </div>
+                <div class="sidebar-header">
+
+                    <div class="user-info">
+                        <span class="user-name">
+                            <strong>Admin name</strong>
+                        </span>
+
+                    </div>
+                </div>
+                <!-- sidebar-header  -->
+                <div class="sidebar-search">
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control search-menu" placeholder="Search...">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar-search  -->
+                <div class="sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>General</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a [routerLink]="['/admindashboard/announcements']" routerLinkActive="active">
+                                <i class="fa fa-tachometer-alt"></i>
+                                <span>Announcements</span>
+                                <span class="badge badge-pill badge-danger">New</span>
+                            </a>
+
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a [routerLink]="['/admindashboard/students']" routerLinkActive="active">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Students</span>
+                                <span class="badge badge-pill badge-primary">3</span>
+                            </a>
+
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a [routerLink]="['/admindashboard/teachers']" routerLinkActive="active">
+                                <i class="far fa-gem"></i>
+                                <span>Teachers</span>
+                            </a>
+
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a [routerLink]="['/admindashboard/studyfields']" routerLinkActive="active">
+                                <i class="far fa-gem"></i>
+                                <span>Study fields</span>
+                            </a>
+
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a [routerLink]="['/admindashboard/subjects']" routerLinkActive="active">
+                                <i class="far fa-gem"></i>
+                                <span>Subjects</span>
+                            </a>
+
+                        </li>
+
+                        <li class="header-menu">
+                            <span>Extra</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i>
+                                <span>Calendar</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- sidebar-menu  -->
+            </div>
+            <!-- sidebar-content  -->
+            <div class="sidebar-footer">
+                <a href="#">
+                    <i class="fa fa-bell"></i>
+                    <span class="badge badge-pill badge-warning notification">3</span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                    <span class="badge badge-pill badge-success notification">7</span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-cog"></i>
+                    <span class="badge-sonar"></span>
+                </a>
+                <a href="#">
+                    <i class="fa fa-power-off"></i>
+                </a>
+            </div>
+        </nav>
+        <!-- sidebar-wrapper  -->
+        <main class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <h1>Teachers management</h1>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                  <table class="table table">
+
+
+                    <thead>
+                      <tr>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                        <th style="float:right;border:none">    <input class="btn btn-primary" type="button" value="Add a new teacher" (click)="openAddTeacher()"></th>
+                      </tr>
+                      <tr>
+                        <th>teacher ID</th>
+                        <th>teacher name</th>
+                        <th>teacher email</th>
+                        </tr>
+                      </thead>
+                  <tbody>
+                    <tr *ngFor="let teacher of teachers;">
+                      <td>{{teacher.id}}</td>
+                      <td>{{teacher.username}}
+                      <td>
+                        {{teacher.email}}
+                        <a id="editButton" style="float: right" (click)="openEditTeacher(teacher.id)">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+</svg>
+                        </a>
+                        <a id="deleteButton" style="float: right;padding-left:5px" (click)="deleteTeacher(teacher.id)">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                          </svg>
+                        </a>
+
+                      </td>
+                    </tr>
+                  </tbody>
+                  </table>
+
+                </div>
+            </div>
+    </main>
+    <!-- page-content" -->
+    </div>

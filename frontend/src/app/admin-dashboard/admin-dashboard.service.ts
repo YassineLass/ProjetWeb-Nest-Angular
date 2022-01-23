@@ -65,4 +65,20 @@ export class AdminDashboardService {
   getAllSubjects(){
     return this.http.get(this.api_link5)
   }
+  //Teachers
+  api_link6 = 'http://localhost:3000/teachers'
+  getAllTeachers(){
+    return this.http.get(this.api_link6)
+  }
+  api_link7 = 'http://localhost:3000/user/register/teacher'
+  addTeacher(infos: any){
+    return this.http.post(this.api_link7, infos)
+  }
+  api_link8 = 'http://localhost:3000/control/teacher/'
+  deleteTeacher(id: any){
+    return this.http.delete(this.api_link8+id)
+  }
+  editTeacher(infos: any, id: any){
+    return this.http.delete(this.api_link8+id, infos)
+  }
 }

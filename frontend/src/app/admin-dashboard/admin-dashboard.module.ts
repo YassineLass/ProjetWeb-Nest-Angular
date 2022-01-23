@@ -4,7 +4,7 @@ import { AdminAnnouncementComponent } from './admin-announcement/admin-announcem
 import { AdminStudentsComponent } from './admin-students/admin-students.component';
 import { DialogAdd, DialogEdit } from './admin-students/admin-students.component';
 
-import { AdminTeachersComponent } from './admin-teachers/admin-teachers.component';
+import { AdminTeachersComponent, DialogAddTeacher, DialogEditTeacher } from './admin-teachers/admin-teachers.component';
 import { AdminSubjectsComponent, DialogAddSubject } from './admin-subjects/admin-subjects.component';
 import {RouterModule} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +21,9 @@ import { AdminStudyfieldsComponent, FieldDialogAdd } from './admin-studyfields/a
     AdminStudyfieldsComponent,
     FieldDialogAdd,
     DialogEdit,
-    DialogAddSubject
+    DialogAddSubject,
+    DialogAddTeacher,
+    DialogEditTeacher
   ],
   imports: [
     CommonModule,
