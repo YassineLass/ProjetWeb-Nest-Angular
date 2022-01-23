@@ -1,6 +1,6 @@
-import { IsArray, IsEAN, IsEmail, IsNotEmpty } from "class-validator";
+import { IsArray, isArray, IsEAN, IsEmail, IsNotEmpty } from "class-validator";
 
-export class UserSubscibeDTO {
+export class TeacherSubscibeDTO {
     @IsNotEmpty()
     username:string;
 
@@ -11,8 +11,8 @@ export class UserSubscibeDTO {
     @IsNotEmpty()
     password:string;
 
-    @IsNotEmpty()
     @IsArray()
-    subjects : string[]
+    @IsNotEmpty()
+    subjects:string[]
     
 }

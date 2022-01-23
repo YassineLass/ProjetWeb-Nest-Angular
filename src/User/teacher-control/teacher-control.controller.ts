@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
 import { User } from 'src/common/decorators/User.decorator';
 import { AddSubjectDTO } from 'src/DTO/Subjects/add-Subject.DTO';
 import { AddTeacherSubjectDTO } from 'src/DTO/Teacher/add-teacher-subject.DTO';
@@ -18,5 +18,21 @@ export class TeacherControlController {
         @User() user
     ){
         return this._teacherControllService.addNewSubject(data.teacher_id,data.subject_name,user)
+    }
+    @Delete(':id')
+    @UseGuards(JwtAuthGuard)
+    async deleteteacher(
+        @Param('id', ParseIntPipe) id : number ,
+        @User() user
+    ) {
+        return this._teacherControllService.deleteTeacher(id,user)
+    }
+    @Patch(':id')
+    @UseGuards(JwtAuthGuard) 
+    async updateTeacher(
+        @Param('id',ParseIntPipe) id : number ,
+        @User() user 
+    ){
+        // return this._teacherControllService.
     }
 }

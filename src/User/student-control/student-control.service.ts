@@ -7,6 +7,7 @@ import { UserEntity } from 'src/entities/user.entity';
 import { StudyYearEnum } from 'src/enums/study-year.enum';
 import { UserRoleEnum } from 'src/enums/user-role.enum';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class StudentControlService {
@@ -80,6 +81,7 @@ export class StudentControlService {
             throw new UnauthorizedException("Sorry you don't have permission")
         }
         let data
+
         const student = await this._userRepo.preload({
             id,
             ...studentData,
@@ -89,6 +91,12 @@ export class StudentControlService {
         if(!student){
             throw new NotFoundException("Sorry there is no student with this ID")
         }
+        if(studentData.password){
+            
+            student.salt =  await bcrypt.genSalt()
+            student.password = await bcrypt.hash(student.password,student.salt)
+        }
+        
         return await this._userRepo.save(student);
 
     }

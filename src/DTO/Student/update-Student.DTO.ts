@@ -22,8 +22,8 @@ export class UpdateStudentDTO {
     @IsString()
     field : string;
 
-    // @IsOptional()
-    // @IsString()
-    // password:string;
+    @IsOptional()
+    @IsString()
+    password:string;
 }
 

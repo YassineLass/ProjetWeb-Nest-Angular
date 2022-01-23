@@ -9,6 +9,7 @@ import { LoginDTO } from './DTO/login.DTO';
 import { JwtService } from '@nestjs/jwt';
 import { StudentRegisterDTO } from './DTO/Student-register.DTO';
 import { FieldEntity } from 'src/entities/field.entity';
+import { SubjectEntity } from 'src/entities/subject.entity';
 
 @Injectable()
 export class UserService {
@@ -17,7 +18,9 @@ export class UserService {
         private _UserRepo: Repository<UserEntity>,
         private _jwtService: JwtService,
         @InjectRepository(FieldEntity)
-        private _fieldRepo:Repository<FieldEntity>
+        private _fieldRepo:Repository<FieldEntity>,
+        @InjectRepository(SubjectEntity)
+        private _subjectRepo:Repository<SubjectEntity>
     ) {
 
     }
@@ -105,13 +108,22 @@ export class UserService {
                 { email: email }
             ]
         })
-
+        const subjects = teacherData.subjects;
         if (check) {
             throw new UnauthorizedException('username or email already exists')
         }
         const teacher = this._UserRepo.create({
             ...teacherData
         })
+        for(const s in subjects){
+           const  subject = await this._subjectRepo.findOne({
+               name:subjects[s]
+           })
+           if(!subject){
+               throw new NotFoundException("Subject {subjects[s]} does not exist")
+           }
+           teacher.teaching_subjects.push(subject)
+        }
         teacher.salt = await bcrypt.genSalt();
         teacher.password = await bcrypt.hash(teacher.password,teacher.salt)
         teacher.role = UserRoleEnum.TEACHER;
