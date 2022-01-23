@@ -1,10 +1,13 @@
 import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { isArray } from 'class-validator';
+import { UpdateTeacherDTO } from 'src/DTO/Teacher/update-Teacher.DTO';
 import { FieldEntity } from 'src/entities/field.entity';
 import { SubjectEntity } from 'src/entities/subject.entity';
 import { UserEntity } from 'src/entities/user.entity';
 import { UserRoleEnum } from 'src/enums/user-role.enum';
 import { Repository } from 'typeorm';
+import { TeacherSubscibeDTO } from '../DTO/teacher-register.DTO';
 
 @Injectable()
 export class TeacherControlService {
@@ -118,4 +121,17 @@ export class TeacherControlService {
         return await this._userRepo.remove(teacher)
 
     }
+    // async updateTeacher(id:number,teacherData:UpdateTeacherDTO,user):Promise<Partial<UserEntity>>{
+    //     if(user.role!=UserRoleEnum.ADMIN){
+    //         throw new UnauthorizedException("Sorry you don't have permission")
+    //     }
+    //     let data 
+    //     const teacher = await this._userRepo.create(
+    //         id,
+    //         // ...teacherData,
+
+            
+    //     )
+
+    // }
 }

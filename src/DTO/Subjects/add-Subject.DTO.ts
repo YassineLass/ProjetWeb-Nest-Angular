@@ -5,9 +5,7 @@ export class AddSubjectDTO {
     @IsNotEmpty()
     @IsString()
     name:string
-
     
-
     @IsArray()
     @IsNotEmpty()
     fieldstab:string[]

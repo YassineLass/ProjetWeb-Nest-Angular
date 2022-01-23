@@ -1,26 +1,20 @@
-import { IsNumber, IsOptional, IsString, Max, Min } from "class-validator";
+import { Type } from "class-transformer";
+import { IsArray, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, Max, Min } from "class-validator";
 
 export class UpdateTeacherDTO {
-    @IsOptional()
-    @IsString()
-    firstname : string;
 
     @IsOptional()
-    @IsString()
-    lastname : string;
+    username:string;
+
+    @IsEmail()
+    @IsOptional()
+    email:string;
 
     @IsOptional()
-    @IsString()
-    birthdate : Date;
+    password:string;
 
-    @IsOptional() 
-    @IsNumber()
-    @Min(0)
-    @Max(99999999)
-    CIN : number;
-
-
+    @IsArray()
     @IsOptional()
-    @IsString()
-    field : string;
+    subjects:string[]
 }
+
