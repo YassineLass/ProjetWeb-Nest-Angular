@@ -49,4 +49,7 @@ export class AdminDashboardService {
     console.log(info);
     return this.http.patch(this.api_link3+id.id, info)
   }
+  deleteStudent(id: any) {
+    return this.http.delete(this.api_link+id)
+  }
 }

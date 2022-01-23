@@ -16,7 +16,8 @@ export class AdminStudentsComponent implements OnInit {
   students: any = []
   constructor(
     public dialog: MatDialog,
-    private adminService: AdminDashboardService
+    private adminService: AdminDashboardService,
+    private router: Router
 
   ) { }
 
@@ -38,7 +39,16 @@ export class AdminStudentsComponent implements OnInit {
     });
   }
   deleteStudent(id: any){
-
+    this.adminService.deleteStudent(id).subscribe(
+      (response: any) => {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate(['/admindashboard/students'])
+      },
+      (error: any) => {
+        console.log(error.error.message)
+      }
+    )
   }
   editStudent(id: any) {
     const dialogRef = this.dialog.open(DialogEdit, {
