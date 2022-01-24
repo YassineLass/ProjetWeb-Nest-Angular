@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGua
 import { User } from 'src/common/decorators/User.decorator';
 import { AddSubjectDTO } from 'src/DTO/Subjects/add-Subject.DTO';
 import { AddTeacherSubjectDTO } from 'src/DTO/Teacher/add-teacher-subject.DTO';
+import { UpdateTeacherDTO } from 'src/DTO/Teacher/update-Teacher.DTO';
 import { JwtAuthGuard } from '../Guards/jwt-auth.guard';
 import { TeacherControlService } from './teacher-control.service';
 
@@ -31,8 +32,9 @@ export class TeacherControlController {
     @UseGuards(JwtAuthGuard) 
     async updateTeacher(
         @Param('id',ParseIntPipe) id : number ,
+        @Body() teacherDAta: UpdateTeacherDTO,
         @User() user 
     ){
-        // return this._teacherControllService.
+        return this._teacherControllService.updateTeacher(id,teacherDAta ,user)
     }
 }

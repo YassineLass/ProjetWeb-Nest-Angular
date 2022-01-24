@@ -13,6 +13,6 @@ export class TeacherSubscibeDTO {
 
     @IsArray()
     @IsNotEmpty()
-    subjects:string[]
+    subject:string
     
 }

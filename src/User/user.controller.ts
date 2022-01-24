@@ -6,6 +6,7 @@ import { UserSubscibeDTO } from './DTO/user-subscribe.DTO';
 import { UserEntity } from '../entities/user.entity';
 import { JwtAuthGuard } from './Guards/jwt-auth.guard';
 import { UserService } from './user.service';
+import { TeacherSubscibeDTO } from './DTO/teacher-register.DTO';
 
 @Controller('user')
 export class UserController {
@@ -35,7 +36,7 @@ export class UserController {
     @Post('register/teacher')
     @UseGuards(JwtAuthGuard)
     async registerTeacher(
-         @Body() teacherData:UserSubscibeDTO,
+         @Body() teacherData:TeacherSubscibeDTO,
          @User() user
     ){
         return this._userService.registerTeacher(teacherData,user)

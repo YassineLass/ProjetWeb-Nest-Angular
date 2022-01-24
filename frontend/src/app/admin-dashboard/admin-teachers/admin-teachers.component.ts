@@ -127,6 +127,7 @@ export class DialogEditTeacher implements OnInit{
     this.dialogRef.close();
   }
   editTeacher(teacher: NgForm){
+    console.log(this.data)
     this.adminService.editTeacher(teacher.value, this.data).subscribe(
       (response: any) => {
         this.dialogRef.close();

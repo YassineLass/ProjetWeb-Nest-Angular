@@ -10,6 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 import { StudentRegisterDTO } from './DTO/Student-register.DTO';
 import { FieldEntity } from 'src/entities/field.entity';
 import { SubjectEntity } from 'src/entities/subject.entity';
+import { TeacherSubscibeDTO } from './DTO/teacher-register.DTO';
 
 @Injectable()
 export class UserService {
@@ -96,7 +97,8 @@ export class UserService {
         return admin
 
     }
-    async registerTeacher(teacherData:UserSubscibeDTO,user):Promise<Partial<UserEntity>>{
+    async registerTeacher(teacherData:TeacherSubscibeDTO,user):Promise<Partial<UserEntity>>{
+        // console.log(teacherData)
         if(user.role!=UserRoleEnum.ADMIN){
             throw new UnauthorizedException("Sorry you don't have permission")
         }
@@ -108,22 +110,22 @@ export class UserService {
                 { email: email }
             ]
         })
-        const subjects = teacherData.subjects;
+        const subjects = teacherData.subject;
         if (check) {
             throw new UnauthorizedException('username or email already exists')
         }
         const teacher = this._UserRepo.create({
             ...teacherData
         })
-        for(const s in subjects){
-           const  subject = await this._subjectRepo.findOne({
-               name:subjects[s]
-           })
-           if(!subject){
-               throw new NotFoundException("Subject {subjects[s]} does not exist")
-           }
-           teacher.teaching_subjects.push(subject)
+        const  subject = await this._subjectRepo.findOne({
+            name:subjects
+        })
+        if(!subject){
+            throw new NotFoundException("Subject {subjects} does not exist")
         }
+        // console.log(teacher)
+        teacher.teaching_subjects= [subject]
+
         teacher.salt = await bcrypt.genSalt();
         teacher.password = await bcrypt.hash(teacher.password,teacher.salt)
         teacher.role = UserRoleEnum.TEACHER;

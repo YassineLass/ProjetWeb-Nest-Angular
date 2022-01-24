@@ -8,6 +8,7 @@ import { UserEntity } from 'src/entities/user.entity';
 import { UserRoleEnum } from 'src/enums/user-role.enum';
 import { Repository } from 'typeorm';
 import { TeacherSubscibeDTO } from '../DTO/teacher-register.DTO';
+import * as bcrypt from 'bcrypt'
 
 @Injectable()
 export class TeacherControlService {
@@ -113,7 +114,8 @@ export class TeacherControlService {
             throw new UnauthorizedException("Sorry you din't have permission")
         }
         const teacher = await this._userRepo.findOne({
-            id:teacher_id
+            relations:["teaching_subjects"],
+            where:{id:teacher_id}
         })
         if(!teacher)
         throw new NotFoundException("Sorry there is so teacher with this ID")
@@ -121,17 +123,25 @@ export class TeacherControlService {
         return await this._userRepo.remove(teacher)
 
     }
-    // async updateTeacher(id:number,teacherData:UpdateTeacherDTO,user):Promise<Partial<UserEntity>>{
-    //     if(user.role!=UserRoleEnum.ADMIN){
-    //         throw new UnauthorizedException("Sorry you don't have permission")
-    //     }
-    //     let data 
-    //     const teacher = await this._userRepo.create(
-    //         id,
-    //         // ...teacherData,
+    async updateTeacher(id:number,teacherData:UpdateTeacherDTO,user):Promise<Partial<UserEntity>>{
+        if(user.role!=UserRoleEnum.ADMIN){
+            throw new UnauthorizedException("Sorry you don't have permission")
+        }
+        let data 
+        const teacher = await this._userRepo.preload(
+            {id ,
+            ...teacherData,
+        }
+        )
+        if(!teacher){
+            throw new NotFoundException("There is no teacher with this ID")
+        }
+        if(teacherData.password){
+            teacher.salt = await bcrypt.genSalt()
+            teacher.password = await bcrypt.hash(teacher.password,teacher.salt)
+        }
+        return await this._userRepo.save(teacher)
 
-            
-    //     )
 
-    // }
+    }
 }

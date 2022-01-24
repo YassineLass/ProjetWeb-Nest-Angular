@@ -79,6 +79,7 @@ export class AdminDashboardService {
     return this.http.delete(this.api_link8+id)
   }
   editTeacher(infos: any, id: any){
-    return this.http.patch(this.api_link8+id, infos)
+    const link = this.api_link8+id.id
+    return this.http.patch(link, infos)
   }
 }

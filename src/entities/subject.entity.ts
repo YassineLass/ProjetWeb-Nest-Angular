@@ -46,7 +46,8 @@ export class SubjectEntity extends TimeStamp  {
 
     @ManyToOne(
         type=>UserEntity,
-        teacher=>teacher.teaching_subjects
+        teacher=>teacher.teaching_subjects,
+        {onDelete:"CASCADE"}
     )
     @JoinColumn()
     teacher:UserEntity
